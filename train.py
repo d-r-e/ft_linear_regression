@@ -27,11 +27,17 @@ if __name__ == "__main__":
     df = pd.read_csv("data.csv")
     km = np.array(df['km'])
     price = np.array(df['price'])
-    print("KM:")
-    print(km)
-    print("Price:")
+    try:
+        filename = "theta.txt"
+        f = open(filename, "r")
+        theta = np.zeros(2)
+        theta[0] = float(f.readline())
+        theta[1] = float(f.readline())
+        f.close()
+    except:
+        print(f"Error: \"{filename}\" file not found or wrong format.")
+        exit(0)
+    y = predict(theta, km)
     m = km.size
     lr = 0.2 #learning rate
-    theta = np.array([5,5])
-    y = predict(theta, km)
     #WIP
