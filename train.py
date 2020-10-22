@@ -17,6 +17,12 @@ def estimate_price(theta, mileage):
     price = theta[0] + theta[1] * mileage
     return price
 
+def predict(theta, x):
+    xx = np.zeros([x.shape[0], 2])
+    xx[:,-1] = x
+    y = xx.dot(theta)
+    return y
+
 if __name__ == "__main__":
     df = pd.read_csv("data.csv")
     km = np.array(df['km'])
@@ -26,10 +32,6 @@ if __name__ == "__main__":
     print("Price:")
     m = km.size
     lr = 0.2 #learning rate
-    theta = np.zeros(2)
-    phi = 0
-    for i in range(m):
-        phi += estimate_price(theta, km[i] - price[i])
-    print(phi)
-        
-    print(m)
+    theta = np.array([5,5])
+    y = predict(theta, km)
+    #WIP
