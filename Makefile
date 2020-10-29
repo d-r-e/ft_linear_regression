@@ -3,7 +3,7 @@ PREDICT = predict.py
 TRAIN = train.py
 
 push:
-	git add $(PREDICT) $(TRAIN) Makefile en.subject.pdf .gitignore README.md
+	git add $(PREDICT) $(TRAIN) Makefile ft_linear_regression.ipynb
 	git commit -m "ft_linear_regression by darodrig"
 	git push
 
