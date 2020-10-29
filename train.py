@@ -28,14 +28,15 @@ def linear_regression(mileage, price, m, theta0, theta1, learning_rate, ntimes):
     x = mileage
     y = price
     mileage = (mileage-min(mileage))/(max(mileage)-min(mileage))
-    price = (price-min(price))/(max(price)-min(price))
+    price = (price - min(price)) / (max(price) - min(price))
     for i in range(ntimes):
         yp = estimate_price(mileage, theta0, theta1)
         tmp_theta0 = learning_rate * 1/m * sum(yp - price)
         tmp_theta1 = learning_rate * 1/m * sum((yp - price) * mileage)
         theta0 -= tmp_theta0
         theta1 -= tmp_theta1
-    theta0 = theta0*(max(y)-min(y)) + min(y) + (theta1*min(x)*(min(y)-max(y)))/(max(x)-min(x))
+    theta0 = theta0*(max(y)-min(y)) + min(y) + \
+            (theta1*min(x)*(min(y)-max(y)))/(max(x)-min(x))
     theta1 = theta1*(max(y)-min(y)) / (max(x)-min(x))
     return theta0, theta1
 
@@ -57,8 +58,8 @@ if __name__ == "__main__":
     yp = predict(theta, km)
     print(km)
     print(yp)
-    
+
     lr = 0.2 #learning rate = alpha
-    theta = linear_regression(km, price, km.size, theta[0], theta[1], 0.1, 10000)
+    theta = linear_regression(km, price, km.size, theta[0], theta[1], 0.1, 1000)
     print(theta)
 
