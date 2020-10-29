@@ -31,8 +31,8 @@ def linear_regression(mileage, price, m, theta0, theta1, learning_rate, ntimes):
     price = (price - min(price)) / (max(price) - min(price))
     for i in range(ntimes):
         yp = estimate_price(mileage, theta0, theta1)
-        tmp_theta0 = learning_rate * 1/m * sum(yp - price)
-        tmp_theta1 = learning_rate * 1/m * sum((yp - price) * mileage)
+        tmp_theta0 = learning_rate * 1/m * np.sum(yp - price)
+        tmp_theta1 = learning_rate * 1/m * np.sum((yp - price) * mileage)
         theta0 -= tmp_theta0
         theta1 -= tmp_theta1
     theta0 = theta0*(max(y)-min(y)) + min(y) + \
